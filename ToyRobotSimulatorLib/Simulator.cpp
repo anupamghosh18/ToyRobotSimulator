@@ -9,6 +9,7 @@ using std::cout;
 using std::endl;
 using std::exception;
 using std::getline;
+using std::invalid_argument;
 using std::make_pair;
 using std::stoi;
 using std::string;
@@ -21,12 +22,6 @@ namespace ToyRobotSimulator
 
 #define COMMAND_WITH_NO_PARAM		1
 #define COMMAND_WITH_PARAM			2
-
-#define	COMMAND_PLACE			"PLACE"
-#define	COMMAND_MOVE_FORWARD	"MOVE"
-#define	COMMAND_TURN_LEFT		"LEFT"
-#define	COMMAND_TURN_RIGHT		"RIGHT"
-#define	COMMAND_REPORT			"REPORT"
 
 	static string ToUpper(string &str)
 	{
@@ -82,8 +77,7 @@ namespace ToyRobotSimulator
 	void Simulator::Run()
 	{
 		string commandInput;
-		TableTop tableTop;
-		Robot robot(tableTop);
+		Robot robot;
 
 		while (getline(cin, commandInput))
 		{
@@ -118,7 +112,7 @@ namespace ToyRobotSimulator
 		}
 		else
 		{
-			throw std::invalid_argument("Unknown command: " + command);
+			throw invalid_argument("Unknown command: " + command);
 		}
 
 		return parsedCommand;
@@ -136,9 +130,10 @@ namespace ToyRobotSimulator
 		{
 			try 
 			{
+				this->commandName = commandName;
 				if (TOTAL_PARAMETEERS != parameters.size())
 				{
-					cout << "PLACE command called with incorrect number of arguments." << endl;
+					cout << "PLACE command passed with incorrect number of arguments." << endl;
 				}
 				else
 				{
@@ -160,24 +155,66 @@ namespace ToyRobotSimulator
 		}
 		else if (COMMAND_MOVE_FORWARD == commandName)
 		{
-			robot.MoveForward();
+			if (!parameters.size())
+			{
+				this->commandName = commandName;
+				robot.MoveForward();
+			}
+			else
+			{
+				cout << "MOVE command passed with too many arguments." << endl;
+			}
 		}
 		else if (COMMAND_TURN_LEFT == commandName)
 		{
-			robot.TurnLeft();
+			if (!parameters.size())
+			{
+				this->commandName = commandName;
+				robot.TurnLeft();
+			}
+			else
+			{
+				cout << "LEFT command passed with too many arguments." << endl;
+			}
 		}
 		else if (COMMAND_TURN_RIGHT == commandName)
 		{
-			robot.TurnRight();
+			if (!parameters.size())
+			{
+				this->commandName = commandName;
+				robot.TurnRight();
+			}
+			else
+			{
+				cout << "RIGHT command passed with too many arguments." << endl;
+			}
 		}
 		else if (COMMAND_REPORT == commandName)
 		{
-			robot.Report();
+			if (!parameters.size())
+			{
+				this->commandName = commandName;
+				cout << "Output: " << robot.Report() << endl;
+			}
+			else
+			{
+				cout << "REPORT command passed with too many arguments." << endl;
+			}
 		}
 		else
 		{
-			throw std::invalid_argument("Unknown command: " + commandName);
+			throw invalid_argument("Unknown command: " + commandName);
 		}
+	}
+
+	Direction Simulator::GetEnumValueOfDirection(string direction)
+	{
+		return stringToEnum.at(direction);
+	}
+
+	string Simulator::GetCommandName()
+	{
+		return commandName;
 	}
 }
 

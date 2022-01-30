@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Simulator.h"
 
 using ToyRobotSimulator::Simulator;

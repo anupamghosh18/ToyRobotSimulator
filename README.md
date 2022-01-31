@@ -5,11 +5,8 @@
 * The robot is free to roam around the surface of the table, but must be prevented from falling to destruction. Any movement that would result in the robot falling from the table must be prevented, however further valid movement commands must still be allowed.
 * Create an application that can read in commands of the following form:
 
-PLACE X,Y,F
-MOVE
-LEFT
-RIGHT
-REPORT
+  PLACE X,Y,F<br/>                                                                                                                                                                 MOVE<br/>                                                                                                                                                                         LEFT<br/>                                                                                                                                                                         RIGHT<br/>
+  REPORT
 
 * PLACE will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.
 * The origin (0,0) can be considered to be the SOUTH WEST most corner.
@@ -30,8 +27,8 @@ REPORT
 
 ### Example a
 
-PLACE 0,0,NORTH                                                                                                                                                                   
-MOVE                                                                                                                                                                             
+PLACE 0,0,NORTH<br/>
+MOVE<br/>
 REPORT
 
 #### Expected output:
@@ -40,8 +37,8 @@ Output: 0,1,NORTH
 
 ### Example b
 
-PLACE 0,0,NORTH                                                                                                                                                                   
-LEFT                                                                                                                                                                             
+PLACE 0,0,NORTH<br/>
+LEFT<br/>
 REPORT
 
 #### Expected output:
@@ -50,11 +47,11 @@ Output: 0,0,WEST
 
 ### Example c
 
-PLACE 1,2,EAST                                                                                                                                                                   
-MOVE                                                                                                                                                                             
-MOVE                                                                                                                                                                             
-LEFT                                                                                                                                                                             
-MOVE                                                                                                                                                                             
+PLACE 1,2,EAST<br/>
+MOVE<br/>
+MOVE<br/>
+LEFT<br/>
+MOVE<br/>
 REPORT
 
 #### Expected output
@@ -64,23 +61,24 @@ Output: 3,3,NORTH
 
 # Development Environment
 The solution to this coding challenge has been developed on Visual Studio 2022 with toolset version v143 and supports C++ 20.
-The projects ToyRobotSimulator and ToyRobotSimulatorUnitTest are console application whereas the project ToyRobotSimulatorLib is a static librray project.
+The projects ToyRobotSimulator and ToyRobotSimulatorUnitTest are console application whereas the project ToyRobotSimulatorLib is a static library project.
 
 # Run Application
-* The Simulator can be run firectly from the IDE in debug/release mode. 
+* The Simulator can be run directly from the IDE in debug/release mode. 
 * The application can also be run from the command line terminal.
     * Run in debug mode: .\x64\Debug\ToyRobotSimulator.exe
 * The application can also be run from the command line terminal.
     * Run in release mode: .\x64\Release\ToyRobotSimulator.exe
+* The commands are passed from the console through stdin and output the REPORT command to stdout. The error statements are reported to stderr.
 * The commands are case insensitive.
 * Any additional whitespace before, after or in-between the command and the parameter list are taken care of. The command still executes correctly.
     
 # Run Test
-The unit test suite is developed using Boost.Test adaptor. Boost.Test required Boost libraries. Please refer the following tutoroal links to install Boost, write test and run them.
+The unit test suite is developed using Boost.Test adaptor. Boost.Test required Boost libraries. Please refer the following tutorial links to install Boost, write test cases and run them.
    * `https://docs.microsoft.com/en-us/visualstudio/test/how-to-use-boost-test-for-cpp?view=vs-2022`
    * `https://docs.microsoft.com/en-us/visualstudio/test/writing-unit-tests-for-c-cpp?view=vs-2022`
    * `https://www.boost.org/doc/libs/1_46_0/libs/test/doc/html/utf.html`
    
 The test suite is to be run on the Test Explorer. The Test Explorer can be opened by: Test -> Test Explorer.
 
-A total of 33 test cases have been written in two suites: for Robot and Simulator classes' methods that covers sunnyday test scenarios, rainyday scenarios, edge and out of bound scenarios for the Robot's movement and also for verifying validity of the the commands (with/without parameters). 
+A total of 33 test cases have been written in two suites: for Robot and Simulator classes' methods that covers sunnyday test scenarios, rainyday scenarios, edge and out of bound scenarios for the Robot's movement and also for verifying validity of the commands (with/without parameters). 

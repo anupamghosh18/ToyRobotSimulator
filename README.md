@@ -11,6 +11,8 @@ The projects ToyRobotSimulator and ToyRobotSimulatorUnitTest are console applica
     * Run in debug mode: .\x64\Debug\ToyRobotSimulator.exe
 * The application can also be run from the command line terminal.
     * Run in release mode: .\x64\Release\ToyRobotSimulator.exe
+* The commands are case insensitive.
+* Any additional whitespace before, after or in-between the command and the parameter list are taken care of. The command still executes correctly.
     
 # Run Test
 The unit test suite is developed using Boost.Test adaptor. Boost.Test required Boost libraries. Please refer the following tutoroal links to install Boost, write test and run them.

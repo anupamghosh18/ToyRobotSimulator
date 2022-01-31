@@ -1,5 +1,5 @@
 # Toy Robot Simulator Coding Challenge
-The detailed requirements and description of this coding challeneg is providied in the Toy Robot Code Challenge.pdf.
+The detailed requirements and description of this coding challenege is providied in the Toy Robot Code Challenge.pdf.
 
 # Development Environment
 The solution to this coding challenge has been developed on Visual Studio 2022 with toolset version v143 and supports C++ 20.
